@@ -1,5 +1,5 @@
 # Americanuncle-Scraper
-A Bot created for scraping every items on americanuncle.it written in Python using Scrapy
+A Bot created for scraping every items on americanuncle.it written in Python using Scrapy framework
 
 ## Usage
 ```bash
