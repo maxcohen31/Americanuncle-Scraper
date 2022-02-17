@@ -1,6 +1,7 @@
 # Americanuncle-Scraper
+A Bot created for scraping every items on americanuncle.it written in Python using Scrapy
 
 ## Usage
 ```bash
-pithon3 snack_spider.py
+python3 snack_spider.py
 ```
