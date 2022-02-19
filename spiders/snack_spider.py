@@ -8,10 +8,14 @@ class SpiderSnack(scrapy.Spider):
     allowed_domains = ['americanuncle.it']
     start_urls = ['https://www.americanuncle.it/collections/snack-americani']
     
+    headers = {
+        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0'
+    }
+    
     custom_settings = {
         'FEED_URI': 'all_items.csv',
         'FEED_FORMAT': 'csv',
-        # 'DOWNLOAD_DELAY': 2
+        'DOWNLOAD_DELAY': 2
     }
     
     try:
