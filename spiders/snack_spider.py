@@ -27,7 +27,7 @@ class SpiderSnack(scrapy.Spider):
         
         all_products = response.css('div.product-block.grid__item.one-quarter.small-down--one-half')
         
-        # look through each product and extract the data
+        # loop over each product and extract the data
         for product in all_products:
             name = product.css('div.product-block__title a::attr(href)').get().replace('/collections/snack-americani/products/', '')
             price = product.css('div.product-price span.theme-money::text').get()
