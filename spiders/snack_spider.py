@@ -9,7 +9,7 @@ class SpiderSnack(scrapy.Spider):
     start_urls = ['https://www.americanuncle.it/collections/snack-americani']
     
     headers = {
-        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0'
     }
     
     custom_settings = {
@@ -33,12 +33,12 @@ class SpiderSnack(scrapy.Spider):
             price = product.css('div.product-price span.theme-money::text').get()
             stars = product.css('span.jdgm-prev-badge__stars::attr(data-score)').get()
             link = product.css('div.product-block__title a::attr(href)').get()
-            yield Request(f'https://www.americanuncle.it/collections/snack-americani/products/{name}', callback=self.parse_details, meta={'name': name, 'price': price, 'stars': stars, 'link': link})
+            yield Request(f'https://www.americanuncle.it/collections/snack-americani/products/{name}', headers=self.headers, callback=self.parse_details, meta={'name': name, 'price': price, 'stars': stars, 'link': link})
         
         # repeat the process until no page is found     
         next_page = response.css('span.next a::attr(href)').get()
         if next_page is not None:
-            yield response.follow(next_page, callback=self.parse)
+            yield response.follow(next_page, ,headers=self.headers, callback=self.parse)
     
     def parse_details(self, response):
         
@@ -57,6 +57,8 @@ class SpiderSnack(scrapy.Spider):
 
 # main driver
 if __name__ == '__main__':
+    
     p = CrawlerProcess()            
     p.crawl(SpiderSnack)
     p.start()
+    
